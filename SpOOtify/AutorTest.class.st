@@ -61,11 +61,8 @@ self assertCollection: autor1 devolverAlbumes  equals: aux
 
 { #category : #tests }
 AutorTest >> testBuscarPorAlbum [
-|aux|
-aux := OrderedCollection new .
-aux add: album2  .
-self assertCollection: (autor2  buscarPorAlbum: 'M') equals: aux .
-self assert: (autor2  buscarPorAlbum: 'awsd') equals: nil .
+self assertCollection: (autor2  buscarPorAlbum: 'M') equals: album2 devolverTemas  .
+self assertEmpty: (autor2  buscarPorAlbum: 'awsd')
 
 ]
 
@@ -76,5 +73,5 @@ aux := OrderedCollection new .
 aux add: tema5 .
 self assertCollection: (autor3  buscarPorTitulo: 'sab') equals: aux .
 
-self assert: (autor3 buscarPorTitulo: 'an' ) equals: nil. 
+self assertEmpty: (autor3 buscarPorTitulo: 'an' ). 
 ]

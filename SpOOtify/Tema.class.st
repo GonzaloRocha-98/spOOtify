@@ -14,20 +14,16 @@ Tema class >> conNombre: unNombre [
 ]
 
 { #category : #'as yet unclassified' }
-Tema class >> conOMBRE: unNombre [
-^self new initializeWithNombre: unNombre
-]
-
-{ #category : #'as yet unclassified' }
-Tema >> getGenero [
+Tema >> coincide: aString [ 
+ ^ (self getNombre) includesSubstring: aString  caseSensitive: false
 ]
 
 { #category : #'as yet unclassified' }
 Tema >> getNombre [
+^nombre
 ]
 
 { #category : #'as yet unclassified' }
-Tema >> initializeWithNombre: unNombre withGenero: unGenero [
+Tema >> initializeWithNombre: unNombre [ 
 nombre:= unNombre .
-genero:= unGenero 
 ]

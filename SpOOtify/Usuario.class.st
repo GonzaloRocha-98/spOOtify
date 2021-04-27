@@ -30,5 +30,6 @@ myMusic:= OrderedCollection new.
 ]
 
 { #category : #'as yet unclassified' }
-Usuario >> remover: asSong [
+Usuario >> remover: aSong [
+myMusic remove: aSong
 ]

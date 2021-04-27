@@ -15,22 +15,23 @@ autores add:unAutor
 
 { #category : #'as yet unclassified' }
 SpOOtify >> agregarUsuario: user [
+usuarios add:user
 ]
 
 { #category : #'as yet unclassified' }
-SpOOtify >> buscarPorAlbum: asString [
+SpOOtify >> buscarPorAlbum: aString [
+^ (self devolverAutores ) flatCollect: [:autor | autor buscarPorAlbum: aString ]
 ]
 
 { #category : #'as yet unclassified' }
-SpOOtify >> buscarPorAutor: asString [
+SpOOtify >> buscarPorAutor: aString [
+^ ((self devolverAutores ) select: [:autor | autor coincide: aString ])
+		flatCollect: [:autor | autor devolverTemas ]
 ]
 
 { #category : #'as yet unclassified' }
-SpOOtify >> buscarPorGenero: asString [
-]
-
-{ #category : #'as yet unclassified' }
-SpOOtify >> buscarPorTitulo: asString [
+SpOOtify >> buscarPorTitulo: aString [
+^ (self devolverAutores) flatCollect: [:autor | autor buscarPorTitulo: aString  ]
 ]
 
 { #category : #'as yet unclassified' }

@@ -15,21 +15,29 @@ Album class >> conNombre:unNombre [
 
 { #category : #'as yet unclassified' }
 Album >> agregarTema: unTema [
-temas add: unTema 
-]
-
-{ #category : #initialization }
-Album >> buscarPorGenero: aString [
-
+temas add: unTema
 ]
 
 { #category : #initialization }
 Album >> buscarPorTitulo: aString [
+^(self devolverTemas ) select:[:tema | tema coincide: aString ]
+]
+
+{ #category : #'as yet unclassified' }
+Album >> coincide: aString [ 
+^(self getNombre) includesSubstring: aString caseSensitive: false
 
 ]
 
 { #category : #initialization }
 Album >> devolverTemas [
+^temas
+]
+
+{ #category : #'as yet unclassified' }
+Album >> getNombre [ 
+^nombre
+
 ]
 
 { #category : #initialization }

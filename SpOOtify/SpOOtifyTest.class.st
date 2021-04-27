@@ -33,7 +33,7 @@ album1 agregarTema: tema1.
 album1 agregarTema:tema2.
 autor1:= Autor conNombre: 'Molotov'.
 autor1 agregarAlbum: album1.
-spOOtify agregarAutores: autor1.
+spOOtify agregarAutor: autor1.
 
 tema3:= Tema conNombre: 'Stan'.
 tema4:= Tema conNombre: 'The Real Slim Shady'.
@@ -42,7 +42,7 @@ album2 agregarTema: tema3.
 album2 agregarTema: tema4.
 autor2:= Autor conNombre:'Eminem'.
 autor2 agregarAlbum: album2.
-spOOtify agregarAutores: autor2.
+spOOtify agregarAutor: autor2.
  
 
 tema5:= Tema conNombre: 'Soy Sabalero'.
@@ -54,7 +54,7 @@ album4 agregarTema: tema6.
 autor3 := Autor conNombre: 'Los Palmeras'.
 autor3 agregarAlbum: album3.
 autor3 agregarAlbum: album4.
-spOOtify agregarAutores: autor3.
+spOOtify agregarAutor: autor3.
 
 
 usuario1 := Usuario conNombre: 'Juan'.
@@ -72,8 +72,8 @@ spOOtify agregarUsuario: usuario2.
 SpOOtifyTest >> testAgregarAutor [
 |aux autor4|
 aux := OrderedCollection new .
-aux add: autor1  .
-aux add: autor2 .
+aux add: autor1;
+	 add:autor2 .
 self assertCollection: (spOOtify devolverAutores) includesAll: aux. 
 
 autor4:= Autor conNombre: 'Duki'.
@@ -101,33 +101,32 @@ self assertCollection: (spOOtify devolverUsuarios ) includesAll: aux.
 { #category : #'as yet unclassified' }
 SpOOtifyTest >> testBuscarPorAlbum [
 |aux|
-aux := OrderedCollection new .
-aux add: album2  .
-self assertCollection: (spOOtify buscarPorAlbum: 'M') equals: aux .
+aux := OrderedCollection new.
+aux addAll: (album2 devolverTemas); addAll: (album3 devolverTemas) .
+self assertCollection: (spOOtify buscarPorAlbum: 'M') equals: aux.
 
-aux add: album3.
-self assertCollection: (spOOtify buscarPorAutor: 'ma' ) equals: aux. 
+self assertCollection: (spOOtify buscarPorAlbum: 'paloma' ) equals: album3 devolverTemas  . 
 ]
 
 { #category : #'as yet unclassified' }
 SpOOtifyTest >> testBuscarPorAutor [
 |aux|
-aux := OrderedCollection new .
-aux add: autor1 .
-self assertCollection: (spOOtify buscarPorAutor: 'Molot') equals: aux .
-
-aux add: autor3.
-self assertCollection: (spOOtify buscarPorAutor: 'l' ) equals: aux. 
+self assertCollection: (spOOtify buscarPorAutor: 'Molot') equals: autor1 devolverTemas  .
+aux:= OrderedCollection new.
+aux addAll: autor1 devolverTemas; addAll:autor3 devolverTemas .
+self assertCollection: (spOOtify buscarPorAutor: 'l' ) equals: aux . 
 ]
 
 { #category : #'as yet unclassified' }
 SpOOtifyTest >> testBuscarPorTitulo [
 |aux|
-aux := OrderedCollection new .
-aux add: tema5 .
-self assertCollection: (spOOtify buscarPorTitulo: 'sab') equals: aux .
-
-aux add: tema2 .
-aux add: tema3.
-self assertCollection: (spOOtify buscarPorTitulo: 'an' ) equals: aux. 
+aux:= OrderedCollection new.
+aux add: tema5. 
+self assertCollection: (spOOtify buscarPorTitulo: 'sab') equals: aux.
+aux add: tema1; 
+	 add: tema2; 
+	 add: tema3; 
+	 add: tema4; 
+	 add: tema6.
+self assertCollection: (spOOtify buscarPorTitulo: 'a' ) includesAll: aux. 
 ]

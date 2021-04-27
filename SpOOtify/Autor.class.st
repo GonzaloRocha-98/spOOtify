@@ -20,14 +20,18 @@ albumes add:unAlbum
 
 { #category : #'as yet unclassified' }
 Autor >> buscarPorAlbum: aString [
-]
-
-{ #category : #'as yet unclassified' }
-Autor >> buscarPorGenero: aString [
+^ ((self devolverAlbumes ) select: [:album | album coincide:aString ]) 
+		flatCollect: [ :album | album devolverTemas ]
 ]
 
 { #category : #'as yet unclassified' }
 Autor >> buscarPorTitulo: aString [
+^ (self devolverAlbumes) flatCollect: [:album | album buscarPorTitulo: aString ] 
+]
+
+{ #category : #'as yet unclassified' }
+Autor >> coincide: aString [ 
+^(self getNombre) includesSubstring: aString caseSensitive: false 
 ]
 
 { #category : #'as yet unclassified' }
@@ -37,10 +41,12 @@ Autor >> devolverAlbumes [
 
 { #category : #'as yet unclassified' }
 Autor >> devolverTemas [
+^(self devolverAlbumes) flatCollect: [:album| album devolverTemas   ]
 ]
 
 { #category : #'as yet unclassified' }
 Autor >> getNombre [
+^nombre
 ]
 
 { #category : #initialization }

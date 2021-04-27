@@ -35,10 +35,10 @@ UsuarioTest >> testAgregar [
 |aux|
 self assertEmpty: usuario2 devolverMyMusic .
 aux := OrderedCollection new.
-usuario2 agregar: tema3 .
-usuario2 agregar: tema5 .
-aux add: tema3 .
-aux add: tema5 .
+usuario2 agregar: tema3 ;
+			agregar: tema5 .
+aux add: tema3; 
+	 add: tema5 .
 self assertCollection: usuario2 devolverMyMusic  equals: aux.
 ]
 
@@ -46,12 +46,12 @@ self assertCollection: usuario2 devolverMyMusic  equals: aux.
 UsuarioTest >> testRemover [
 |aux|
 aux := OrderedCollection new.
-aux add: tema1.
-aux add: tema4 .
-aux add: tema6.
+aux add: tema1; 
+	 add: tema4; 
+	 add: tema6.
 self assertCollection: usuario1 devolverMyMusic equals:aux .
-usuario1 remover: tema1.
-usuario1 remover: tema4.
-usuario1 remover: tema6.
+usuario1 remover: tema1; 
+			remover: tema4; 
+			remover: tema6.
 self assertEmpty: usuario2 devolverMyMusic.
 ]
